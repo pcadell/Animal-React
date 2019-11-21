@@ -53,11 +53,48 @@ export default class LoginRegisterForm extends React.Component {
 
 	render(){
 		return(
-			<div>
-			What you lookin at?
+			<div className="LoginRegisterForm">
+				<Form onSubmit={this.handleSubmit}>
+				{
+					this.state.action === "register"
+					?
+					<React.Fragment>
+					<Label>Username:</Label>
+					<Form.Input
+					type="text"
+					name="username"
+					value={this.state.username}
+					onChange={this.handleChange}
+					/>
+					</React.Fragment>
+					:
+					null
+				}
+				<Label>Email:</Label>
+				<Form.Input 
+				type="email"
+				name="email"
+				value={this.state.email}
+				onChange={this.handleChange}
+				/>
+				<Label>Password:</Label>
+				<Form.Input
+				type="password"
+				name="password"
+				value={this.state.password}
+				onChange={this.handleChange}
+				/>
+				<Button type="Submit">{this.state.action === "register" ? "Register" : "Log in"}</Button>
+				</Form>
+				{
+					this.state.action === "register"
+					?
+					<small>Already have an account? Log in <span onClick={this.switchForm}>here</span>.</small>
+					:
+					<small>Need an account? Sign up <span onClick={this.switchForm}>here</span>!</small>
+				}
 			</div>
-
-			)
+		)
 	}
 }
 
