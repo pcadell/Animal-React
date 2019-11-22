@@ -3,6 +3,7 @@ import './App.css';
 import AlbumContainer from './AlbumContainer';
 import LoginRegistrationForm from './LoginRegistrationForm';
 import GenreContainer from './GenreContainer';
+import { Button } from 'semantic-ui-react'
 
 
 class App extends Component {
@@ -40,10 +41,15 @@ class App extends Component {
   }
 
   logout = async () => {
-
     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/logout', {
-      
+      method: "GET",
+      credentials: 'include'
     })
+    this.setState({
+      loggedIn: false,
+          loggedInUserEmail: null
+      })
+
   }
 
     register = async (registerInfo) => {
@@ -80,7 +86,7 @@ class App extends Component {
         {
           this.state.loggedIn
           ?
-         null
+         <Button onClick={()=>this.logout()}>Get Outta Here</Button>
          :
          <LoginRegistrationForm login={this.login} register={this.register}/>
         }
