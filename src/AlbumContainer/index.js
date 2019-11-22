@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import '../App.css';
-import GenreList from './GenreList'
 
 export default class AlbumContainer extends Component {
 	constructor(){
@@ -14,10 +13,8 @@ export default class AlbumContainer extends Component {
 			title:'',
 			artist:'', 
 			album_cover:'',
-			genre:''
-		
-		genres: []
-	}
+			genre:'',
+		}
 	}
 
 
@@ -38,7 +35,7 @@ export default class AlbumContainer extends Component {
 			console.error(err)
 		}
 	}
-	addAlbum = async (e, albumFromTheForm) => {
+/*	addAlbum = async (e, albumFromTheForm) => {
 		e.preventDefault();
 		try {
 			const createdAlbumResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums', {
@@ -50,7 +47,7 @@ export default class AlbumContainer extends Component {
 				}
 			})
 		}
-	}
+	}*/
 	render(){
 		return(
 			<Grid
@@ -61,13 +58,10 @@ export default class AlbumContainer extends Component {
 				verticalAlign='top'
 				stackable
 			>
-			<Grid.Row>
-				<Grid.Column>
-					<GenreList
-					genres={this.state.genre}
-					/>
-				</Grid.Column>
-			</Grid.Row>
+				<Grid.Row>
+					<Grid.Column>
+					</Grid.Column>
+				</Grid.Row>
 			</Grid>
 			)
 	}

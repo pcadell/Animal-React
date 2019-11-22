@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import AlbumContainer from './AlbumContainer';
-import LoginRegistrationForm from './LoginRegistrationForm'
+import LoginRegistrationForm from './LoginRegistrationForm';
+import GenreContainer from './GenreContainer';
 
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
-      loggedInUserEmail: null
+      loggedInUserEmail: null,
+      genreChosen: ''
     }
   }
 
@@ -59,16 +61,24 @@ class App extends Component {
       }
     }
 
+    chooseGenre = (genre) => {
+      this.setState({
+        genreChosen: genre
+      })
+      
+    }
+
   render(){
     return (
       <div className="App">
         {
           this.state.loggedIn
           ?
-         <AlbumContainer />
+         null
          :
          <LoginRegistrationForm login={this.login} register={this.register}/>
         }
+          <GenreContainer chooseGenre={this.chooseGenre}/>
       </div>
     );}
 }
