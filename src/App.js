@@ -16,11 +16,11 @@ class App extends Component {
 
   login = async (loginInfo) => {
     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/login', { 
-      method: 'POST',
+      method: 'PUT',
       credentials: 'include', 
       body: JSON.stringify(loginInfo), 
       headers: { 
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
     })
     const parsedLoginResponse = await response.json()
@@ -42,7 +42,7 @@ class App extends Component {
         credentials: 'include',
         body: JSON.stringify(registerInfo),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         }
       })
       const parsedRegisterResponse = await response.json()
