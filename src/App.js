@@ -21,7 +21,7 @@ class App extends Component {
       credentials: 'include', 
       body: JSON.stringify(loginInfo), 
       headers: { 
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       }
     })
     const parsedLoginResponse = await response.json()
@@ -43,7 +43,7 @@ class App extends Component {
         credentials: 'include',
         body: JSON.stringify(registerInfo),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         }
       })
       const parsedRegisterResponse = await response.json()
