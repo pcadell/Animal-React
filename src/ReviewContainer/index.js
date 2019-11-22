@@ -15,6 +15,7 @@ export default class ReviewContainer extends Component {
 
 	}
 
+
 	getReviews = async () => {
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
