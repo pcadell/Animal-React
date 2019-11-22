@@ -17,7 +17,7 @@ class App extends Component {
   login = async (loginInfo) => {
 
     const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/login', { 
-      method: 'POST',
+      method: 'PUT',
       credentials: 'include', 
       body: JSON.stringify(loginInfo), 
       headers: { 
