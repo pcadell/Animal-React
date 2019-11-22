@@ -39,7 +39,7 @@ export default class AlbumContainer extends Component {
 	addAlbum = async (e, albumFromTheForm) => {
 		e.preventDefault();
 		try {
-			const createdAlbumResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums', {
+			const createdAlbumResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/', {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(albumFromTheForm), 
@@ -88,7 +88,7 @@ export default class AlbumContainer extends Component {
 	updateAlbum = async (e) => {
 		e.preventDefault()
 		try {
-			const url = process.env.REACT_APP_API_URL + '/api/v1/albums' + this.state.albumToEdit.id
+			const url = process.env.REACT_APP_API_URL + '/api/v1/albums/' + this.state.albumToEdit.id
 			const updateResponse = await fetch(url, {
 				method: 'PUT', 
 				credentials: 'include', 
