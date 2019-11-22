@@ -15,7 +15,7 @@ class App extends Component {
   }
 
   login = async (loginInfo) => {
-    const response = await fetch(process.en.REACT_APP_API_URL + '/api/v1/users/login', { credentials: 'include', body: JSON.stringify(loginInfo), headers: { 'Content-Type': 'application/json'}})
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/login', { credentials: 'include', body: JSON.stringify(loginInfo), headers: { 'Content-Type': 'application/json'}})
     const parsedLoginResponse = await response.json()
     if (parsedLoginResponse.status.code === 200) {
       this.setState({
@@ -29,7 +29,7 @@ class App extends Component {
     }}
 
     register = async (registerInfo) => {
-      const response = await fetch(process.en.REACT_APP_API_URL + '/api/v1/users/register', {
+      const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/register', {
         method: "POST",
         credentials: 'include',
         body: JSON.stringify(registerInfo),
