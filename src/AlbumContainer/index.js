@@ -8,8 +8,19 @@ export default class AlbumContainer extends Component {
 
 		this.state = {
 		albums: [],
+		editModalOpen: false, 
+		albumToEdit:{
+			title:'',
+			artist:'', 
+			album_cover:'',
+			genre:''
+		
 		genres: []
+		}
 	}
+	}
+	componentDidMount(){
+		this.getAlbums();
 	}
 	getAlbums = async () => {
 		try {
@@ -21,6 +32,19 @@ export default class AlbumContainer extends Component {
 			})
 		} catch(err) {
 			console.error(err)
+		}
+	}
+	addAlbum = async (e, albumFromTheForm) => {
+		e.preventDefault();
+		try {
+			const createdAlbumResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums', {
+				method: 'POST',
+				credentials: 'include',
+				body: JSON.stringify(albumFromTheForm), 
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
 		}
 	}
 	render(){
