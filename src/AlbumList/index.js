@@ -13,10 +13,8 @@ function AlbumList(props){
 			</Card.Content>
 			<Card.Content extra>
 				<Button onClick={() => props.editAlbum(album.id)}>Edit Album</Button>
-				</Card.Content>
-			<div>
 				<Button onClick={() => props.addReview(album.id)}>Create a Review</Button>
-			</div>
+				</Card.Content>
 			</Card>
 		)
 	})
