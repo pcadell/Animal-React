@@ -25,6 +25,25 @@ export default class AlbumContainer extends Component {
 		this.getAlbums();
 	}
 
+	addReview = async (e, reviewFromTheForm, albumId) => {
+		e.preventDefault();
+		try {
+			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/', {
+				method: 'POST',
+				credentials: 'include',
+				body: JSON.stringify(reviewFromTheForm, albumId),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			const parsedResponse = await createdReviewResponses.json();
+			console.log(parsedResponse, ' this is review submission response')
+			this.setState({reviews: [...this.state.reviews, parsedResponse.data]})
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
 	getAlbums = async () => {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
@@ -135,6 +154,7 @@ export default class AlbumContainer extends Component {
 						albums={this.state.albums}
 						editAlbum={this.editAlbum}
 						chosenGenre={this.props.chosenGenre}
+						addReview={this.props.addReview}
 					/>
 					</Grid.Column>
 		          		<Grid.Column>
