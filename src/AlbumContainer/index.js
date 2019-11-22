@@ -11,6 +11,7 @@ export default class AlbumContainer extends Component {
 
 		this.state = {
 		albums: [],
+		reviews:[],
 		editModalOpen: false, 
 		albumToEdit:{
 			title:'',
