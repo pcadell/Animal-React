@@ -65,7 +65,6 @@ class App extends Component {
       this.setState({
         genreChosen: genre
       })
-      
     }
 
   render(){
@@ -78,7 +77,13 @@ class App extends Component {
          :
          <LoginRegistrationForm login={this.login} register={this.register}/>
         }
-          <GenreContainer chooseGenre={this.chooseGenre}/>
+          {
+          this.state.genreChosen === ''
+          ?
+            <GenreContainer chooseGenre={this.chooseGenre}/>
+          :
+            <AlbumContainer chosenGenre={this.state.genreChosen}/>
+          }
       </div>
     );}
 }

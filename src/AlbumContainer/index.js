@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import '../App.css';
-import GenreList from '../GenreList';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal'
@@ -119,7 +118,7 @@ export default class AlbumContainer extends Component {
 			editModalOpen: false
 		})
 	}
-	render(){
+	render(props){
 		return(
 			<Grid
 				columns={2} 
@@ -134,6 +133,7 @@ export default class AlbumContainer extends Component {
 					<AlbumList 
 						albums={this.state.albums}
 						editAlbum={this.editAlbum}
+						chosenGenre={this.props.chosenGenre}
 					/>
 					</Grid.Column>
 		          		<Grid.Column>

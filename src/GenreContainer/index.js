@@ -21,7 +21,6 @@ export default class GenreContainer extends Component {
 		try {
 			const genres = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/genres/');
 			const parsedGenres = await genres.json();
-			console.log('parsed genres in Genre container',parsedGenres)
 			this.setState({
 				genres: parsedGenres.data
 			})

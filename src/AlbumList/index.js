@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'semantic-ui-react';
 
 function AlbumList(props){
-	const albums = props.albums.map((album) => {
+	const albums = props.albums.filter(album => album.genre === props.chosenGenre).map((album) => {
 		return (
 			<Card key={album.id}>
 			<Card.Content>
