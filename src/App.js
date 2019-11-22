@@ -39,6 +39,13 @@ class App extends Component {
     }
   }
 
+  logout = async () => {
+
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/logout', {
+      
+    })
+  }
+
     register = async (registerInfo) => {
       const response = await fetch(process.env.REACT_APP_API_URL + '/api/v1/users/register', {
         method: "POST",

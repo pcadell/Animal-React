@@ -7,9 +7,9 @@ export default function GenreList(props){
 // when that's clicked it changes a status relating to GenreContainer
 // disappearing the Genre Container and 
 
-	const genres = props.genres.map((genre) => {
+	const genres = props.genres.map((genre, i) => {
 		return(
-			<div>
+			<div key={i}>
 				<Button onClick={()=>props.chooseGenre(genre.genre)}>{genre.genre}</Button>
 			</div>
 			)
