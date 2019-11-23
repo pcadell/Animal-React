@@ -1,6 +1,11 @@
 import React from 'react'
+<<<<<<< HEAD
 import { Form, Button, Label, Header, Modal} from 'semantic-ui-react';
 
+=======
+import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
+	
+>>>>>>> 653a6907b47dd84c5b223a1d45a15f8a3e4940b4
 function EditAlbumModal(props) {
 
     return(

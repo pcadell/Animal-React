@@ -13,7 +13,7 @@ class AlbumContainer extends Component {
 		this.state = {
 		albums: [],
 		reviews:[],
-		editModalOpen: false, 
+		editModalOpen: false,
 		albumToEdit:{
 			title:'',
 			artist:'', 
@@ -26,6 +26,7 @@ class AlbumContainer extends Component {
 		this.getAlbums();
 	}
 
+<<<<<<< HEAD
 	getAlbums = async () => {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
@@ -39,8 +40,16 @@ class AlbumContainer extends Component {
 		}
 	}
 	addReview = async (e, albumId) => {
+=======
+	addReview = async (e, reviewFromForm) => {
+		e.preventDefault();
+		console.log("e :", e.value)
+		console.log("reviewFromForm: ", reviewFromForm)
+
+>>>>>>> 653a6907b47dd84c5b223a1d45a15f8a3e4940b4
 		const body = {
-			album: albumId,
+			album: e.value,
+			content: reviewFromForm
 		}
 		try {
 			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/', {
@@ -59,6 +68,23 @@ class AlbumContainer extends Component {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+
+
+	getAlbums = async () => {
+		try {
+			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
+			const parsedAlbums = await albums.json();
+//			console.log(parsedAlbums)
+			this.setState({
+				albums: parsedAlbums.data
+			})
+		} catch(err) {
+			console.error(err)
+		}
+	}
+>>>>>>> 653a6907b47dd84c5b223a1d45a15f8a3e4940b4
 	addAlbum = async (e, albumFromTheForm) => {
 		e.preventDefault();
 		try {
@@ -93,12 +119,20 @@ class AlbumContainer extends Component {
 	handleEditChange = (event) => {
 		this.setState({
 			albumToEdit: {
+<<<<<<< HEAD
 				...this.state.albumToEdit,
+=======
+				...this.state.albumToEdit, 
+>>>>>>> 653a6907b47dd84c5b223a1d45a15f8a3e4940b4
 				[event.target.name]: event.target.value
 			}
 		})
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 653a6907b47dd84c5b223a1d45a15f8a3e4940b4
 	updateAlbum = async (e) => {
 		e.preventDefault()
 		try {
@@ -121,13 +155,14 @@ class AlbumContainer extends Component {
 			this.setState({
 				albums: newAlbumsArrayWithUpdate
 			})
-			this.closeModal()
+			this.closeEditModal()
 		} catch(err){
 			console.log(err)
 		}
 	}
 
-	closeModal = () => {
+
+	closeEditModal = () => {
 		this.setState({
 			editModalOpen: false
 		})
@@ -143,24 +178,24 @@ class AlbumContainer extends Component {
 				stackable
 			>
 				<Grid.Row>
-					<Grid.Column>
-					<AlbumList 
-						albums={this.state.albums}
-						editAlbum={this.editAlbum}
-						chosenGenre={this.props.chosenGenre}
-						addReview={this.addReview}
-					/>
-					</Grid.Column>
-		          		<Grid.Column>
+		          	<Grid.Column>
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
 	         			</Grid.Column>
 	         			<EditAlbumModal
 	         			open={this.state.editModalOpen}
 	         			updateAlbum={this.updateAlbum}
 	         			albumToEdit={this.editAlbum}
-	         			closeModal={this.closeModal}
+	         			closeEditModal={this.closeEditModal}
 	         			handleEditChange={this.handleEditChange}
 	         			/>
+					<Grid.Column>
+						<AlbumList 
+							albums={this.state.albums}
+							editAlbum={this.editAlbum}
+							chosenGenre={this.props.chosenGenre}
+							addReview={this.addReview}
+						/>
+					</Grid.Column>
 				</Grid.Row>
 			</Grid>
 		)
