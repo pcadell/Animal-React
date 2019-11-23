@@ -1,7 +1,7 @@
-import React from 'react' 
-import { Form, Button, Label, Header, Modal }
+import React, { Component } from 'react';
+import { Form, Button, Label, Segment } from 'semantic-ui-react';
 
-class CreateReview(props){
+class CreateReview extends Component{
 	constructor(){
 		super();
 

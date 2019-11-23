@@ -4,6 +4,7 @@ import '../App.css';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal'
+import CreateReview from '../CreateReviewForm'
 
 export default class AlbumContainer extends Component {
 	constructor(){
@@ -25,6 +26,18 @@ export default class AlbumContainer extends Component {
 		this.getAlbums();
 	}
 
+	getAlbums = async () => {
+		try {
+			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
+			const parsedAlbums = await albums.json();
+			console.log(parsedAlbums)
+			this.setState({
+				albums: parsedAlbums.data
+			})
+		} catch(err) {
+			console.error(err)
+		}
+	}
 	addReview = async (e, albumId) => {
 
 		console.log("e :", e)
@@ -33,7 +46,6 @@ export default class AlbumContainer extends Component {
 		const body = {
 			album: albumId,
 		}
-		return e
 		try {
 			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/', {
 				method: 'POST',
@@ -51,18 +63,6 @@ export default class AlbumContainer extends Component {
 		}
 	}
 
-	getAlbums = async () => {
-		try {
-			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
-			const parsedAlbums = await albums.json();
-			console.log(parsedAlbums)
-			this.setState({
-				albums: parsedAlbums.data
-			})
-		} catch(err) {
-			console.error(err)
-		}
-	}
 	addAlbum = async (e, albumFromTheForm) => {
 		e.preventDefault();
 		try {
@@ -98,15 +98,6 @@ export default class AlbumContainer extends Component {
 		this.setState({
 			albumToEdit: {
 				...this.state.albumToEdit,
-				[event.target.name]: event.target.value
-			}
-		})
-	}
-
-	handleEditChange = (event) => {
-		this.setState({
-			albumToEdit: {
-				...this.state.albumToEdit, 
 				[event.target.name]: event.target.value
 			}
 		})

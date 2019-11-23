@@ -28,6 +28,8 @@ export default class LoginRegisterForm extends React.Component {
 		}
 	}
 
+	
+
 	switchForm = () => {
 		if (this.state.action === 'login') {
 			this.setState({
