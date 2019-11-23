@@ -30,9 +30,6 @@ export default class AlbumContainer extends Component {
 		console.log("e :", e)
 		console.log("reviewFromForm: ", reviewFromForm)
 
-		const body = {
-			content: reviewFromForm
-		}
 		try {
 			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + reviewFromForm.album, {
 				method: 'POST',
@@ -150,8 +147,8 @@ export default class AlbumContainer extends Component {
 				<Grid.Row>
 		          	<Grid.Column>
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
-	         			</Grid.Column>
-	         			<EditAlbumModal
+	         		</Grid.Column>
+	         		<EditAlbumModal
 	         			open={this.state.editModalOpen}
 	         			updateAlbum={this.updateAlbum}
 	         			albumToEdit={this.editAlbum}

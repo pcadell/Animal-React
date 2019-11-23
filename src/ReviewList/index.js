@@ -3,8 +3,7 @@ import { Modal, Form, Button, Label, Header } from 'semantic-ui-react'
 import CreateReviewForm from '../CreateReviewForm'
 
 export default function ReviewList(props){
-	const reviews = props.reviewsFound.filter(review => review.album === props.id).map((review)=>{
-		console.log('\n reviews found in ReviewList: ',reviews)
+	const reviews = props.reviewsFound.filter(review => review.album.id === props.id).map((review)=>{
 		return (
 			<React.Fragment>
 				<small>{review.created_at}</small>
@@ -12,6 +11,8 @@ export default function ReviewList(props){
 			</React.Fragment>
 			)
 	})
+	console.log('props', props)
+	console.log('\n reviews found in ReviewList: ',reviews)
 	return(
 		<React.Fragment>
 		{ reviews }
