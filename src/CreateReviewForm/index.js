@@ -6,7 +6,8 @@ class CreateReview extends Component {
 		super(props);
 
 		this.state = {
-			content: ''
+			content: '',
+			album: this.props.album
 		}
 	}
 	handleChange = (e) => {
@@ -16,7 +17,7 @@ class CreateReview extends Component {
 		return(
 			<React.Fragment>
 				<h4> Create Review</h4> 
-				<Form onSubmit={(e) => this.props.addReview(e, this.state.content)}>
+				<Form onSubmit={(e) => this.props.addReview(e, this.state)}>
 					<Label>Leave your review here</Label>
 					<Form.Input type='text' name='content' value={this.state.review} onChange={this.handleChange}/>
 					<Button type='Submit'>Submit Review</Button>
