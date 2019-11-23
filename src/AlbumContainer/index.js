@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
-import '../App.css';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
-import EditAlbumModal from '../EditAlbumModal'
-import CreateReview from '../CreateReviewForm'
+import EditAlbumModal from '../EditAlbumModal';
+import CreateReview from '../CreateReviewForm';
+import { Grid } from 'semantic-ui-react';
+import '../App.css';
 
-export default class AlbumContainer extends Component {
-	constructor(){
-		super()
+class AlbumContainer extends Component {
+	constructor(props){
+		super(props)
 
 		this.state = {
 		albums: [],
@@ -18,7 +18,7 @@ export default class AlbumContainer extends Component {
 			title:'',
 			artist:'', 
 			album_cover:'',
-			genre:'',
+			genre:''
 			}
 		}
 	}
@@ -39,10 +39,6 @@ export default class AlbumContainer extends Component {
 		}
 	}
 	addReview = async (e, albumId) => {
-
-		console.log("e :", e)
-		console.log("albumId: ", albumId)
-
 		const body = {
 			album: albumId,
 		}
@@ -84,15 +80,15 @@ export default class AlbumContainer extends Component {
 		}
 	}
 
-	editAlbum = (idOfAlbumToEdit) => {
-		const albumToEdit = this.state.albums.find(album => album.id === idOfAlbumToEdit)	
-		this.setState({
-			editModalOpen: true, 
-			albumToEdit:{
-				...albumToEdit
-			}
-		})
-	}
+	  editAlbum = (idOfAlbumToEdit) => {
+    const albumToEdit = this.state.album.find(album => album.id === idOfAlbumToEdit)
+    this.setState({
+      editModalOpen: true, 
+      albumToEdit: {
+        ...albumToEdit
+      }
+    })
+  }
 
 	handleEditChange = (event) => {
 		this.setState({
@@ -171,3 +167,4 @@ export default class AlbumContainer extends Component {
 	}
 
 }
+export default AlbumContainer
