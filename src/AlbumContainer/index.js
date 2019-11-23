@@ -25,15 +25,15 @@ export default class AlbumContainer extends Component {
 		this.getAlbums();
 	}
 
-	addReview = async (e, albumId) => {
-
-		console.log("e :", e)
-		console.log("albumId: ", albumId)
+	addReview = async (e, reviewFromForm) => {
+		e.preventDefault();
+		console.log("e :", e.value)
+		console.log("reviewFromForm: ", reviewFromForm)
 
 		const body = {
-			album: albumId,
+			album: e.value,
+			content: reviewFromForm
 		}
-		return e
 		try {
 			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/', {
 				method: 'POST',
@@ -51,11 +51,13 @@ export default class AlbumContainer extends Component {
 		}
 	}
 
+
+
 	getAlbums = async () => {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
 			const parsedAlbums = await albums.json();
-			console.log(parsedAlbums)
+//			console.log(parsedAlbums)
 			this.setState({
 				albums: parsedAlbums.data
 			})
@@ -102,6 +104,7 @@ export default class AlbumContainer extends Component {
 			}
 		})
 	}
+
 
 	updateAlbum = async (e) => {
 		e.preventDefault()

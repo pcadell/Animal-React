@@ -14,16 +14,18 @@ class CreateReview extends Component {
 	}
 	render(){ 
 		return(
-			<React.Segment>
+			<React.Fragment>
 				<h4> Create Review</h4> 
-				<Form onSubmit={(e) => this.props.addReview(e, this.state)}>
-				<Label>Leave your review here</Label>
-				<Form.Input type='text' name='review' value={this.state.review} onChange={this.handleChange}/>
-				<Button type='Submit'>Submit Review</Button>
-			</Form>
-			</React.Segment>
+				<Form onSubmit={(e) => this.props.addReview(e, this.state.content)}>
+					<Label>Leave your review here</Label>
+					<Form.Input type='text' name='content' value={this.state.review} onChange={this.handleChange}/>
+					<Button type='Submit'>Submit Review</Button>
+				</Form>
+			</React.Fragment>
 		)
 	}
 }
 
 export default CreateReview;
+
+// we need to input current user, albumid and content
