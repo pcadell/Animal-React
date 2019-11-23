@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react';
+import ReviewList from '../ReviewList'
 
 class AlbumList extends Component {
 	constructor(props){
 		super(props)
+		this.state({
+			reviewModalOpen: false, 
+		})
 
+	}
+	closeReviewModal = () =>{
+		this.setState({
+			reviewModalOpen: false
+		})
 	}
 
 	
@@ -21,7 +30,7 @@ class AlbumList extends Component {
 					</Card.Content>
 						<Card.Content extra>
 							<Button onClick={() => this.props.editAlbum(album.id)}>Edit Album</Button>
-							<Button onClick={() => this.props.addReview(album.id)}>Create a Review</Button>
+							<Button onClick={() => this.props.addReview(album.id)}>Reviews</Button>
 						</Card.Content>
 					</Card>
 				)

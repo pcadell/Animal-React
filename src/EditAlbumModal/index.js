@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Label, Header, Modal} from 'semantic-ui-react';
+import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
 	
 function EditAlbumModal(props) {
 	return(

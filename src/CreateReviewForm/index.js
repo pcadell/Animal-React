@@ -1,9 +1,9 @@
-import React from 'react' 
-import { Form, Button, Label, Header, Modal }
+import React, { Component } from 'react' 
+import { Form, Button, Label} from 'semantic-ui-react'
 
-class CreateReview(props){
-	constructor(){
-		super();
+class CreateReview extends Component {
+	constructor(props){
+		super(props);
 
 		this.state = {
 			content: ''
@@ -14,14 +14,14 @@ class CreateReview(props){
 	}
 	render(){ 
 		return(
-			<Segment>
+			<React.Segment>
 				<h4> Create Review</h4> 
 				<Form onSubmit={(e) => this.props.addReview(e, this.state)}>
 				<Label>Leave your review here</Label>
 				<Form.Input type='text' name='review' value={this.state.review} onChange={this.handleChange}/>
 				<Button type='Submit'>Submit Review</Button>
 			</Form>
-			</Segment>
+			</React.Segment>
 		)
 	}
 }

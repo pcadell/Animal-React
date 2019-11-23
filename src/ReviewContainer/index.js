@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css';
 
+// review container loads on click from a button that is in the AlbumList
 export default class ReviewContainer extends Component {
 	constructor(){
 		super()
@@ -30,7 +31,7 @@ export default class ReviewContainer extends Component {
 
 	render(){
 		return(
-			Place-holder for ReviewContainer
+			<CreateReviewForm />
 			)
 	}
 }

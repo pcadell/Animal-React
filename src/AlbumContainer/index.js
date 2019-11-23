@@ -12,7 +12,7 @@ export default class AlbumContainer extends Component {
 		this.state = {
 		albums: [],
 		reviews:[],
-		editModalOpen: false, 
+		editModalOpen: false,
 		albumToEdit:{
 			title:'',
 			artist:'', 
@@ -97,15 +97,6 @@ export default class AlbumContainer extends Component {
 	handleEditChange = (event) => {
 		this.setState({
 			albumToEdit: {
-				...this.state.albumToEdit,
-				[event.target.name]: event.target.value
-			}
-		})
-	}
-
-	handleEditChange = (event) => {
-		this.setState({
-			albumToEdit: {
 				...this.state.albumToEdit, 
 				[event.target.name]: event.target.value
 			}
@@ -134,13 +125,14 @@ export default class AlbumContainer extends Component {
 			this.setState({
 				albums: newAlbumsArrayWithUpdate
 			})
-			this.closeModal()
+			this.closeEditModal()
 		} catch(err){
 			console.log(err)
 		}
 	}
 
-	closeModal = () => {
+
+	closeEditModal = () => {
 		this.setState({
 			editModalOpen: false
 		})
@@ -156,24 +148,24 @@ export default class AlbumContainer extends Component {
 				stackable
 			>
 				<Grid.Row>
-					<Grid.Column>
-					<AlbumList 
-						albums={this.state.albums}
-						editAlbum={this.editAlbum}
-						chosenGenre={this.props.chosenGenre}
-						addReview={this.addReview}
-					/>
-					</Grid.Column>
-		          		<Grid.Column>
+		          	<Grid.Column>
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
 	         			</Grid.Column>
 	         			<EditAlbumModal
 	         			open={this.state.editModalOpen}
 	         			updateAlbum={this.updateAlbum}
 	         			albumToEdit={this.editAlbum}
-	         			closeModal={this.closeModal}
+	         			closeEditModal={this.closeEditModal}
 	         			handleEditChange={this.handleEditChange}
 	         			/>
+					<Grid.Column>
+						<AlbumList 
+							albums={this.state.albums}
+							editAlbum={this.editAlbum}
+							chosenGenre={this.props.chosenGenre}
+							addReview={this.addReview}
+						/>
+					</Grid.Column>
 				</Grid.Row>
 			</Grid>
 		)
