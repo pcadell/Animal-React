@@ -28,7 +28,7 @@ export default class AlbumContainer extends Component {
 	// this fits into the ternary to either have create album open
 	// or reviews and create review options, declutters the ui
 	// tRF() is triggered in AlbumList
-	toggleReviewFocus(){
+	toggleReviewFocus = () => {
 		if (this.state.reviewFocus) {
 			this.setState({
 				reviewFocus: false
