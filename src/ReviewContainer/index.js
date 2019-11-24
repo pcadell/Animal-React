@@ -39,10 +39,19 @@ export default class ReviewContainer extends Component {
 			this.setState({
 				reviews: parsedReviews.data
 			})
-		} catch(err) {
-			console.error(err)
-		}
-	}
+      this.closeModal()
+      
+    } catch(err) {
+      console.error(err)
+    }
+
+  }
+
+  closeModal = () => {
+    this.setState({
+      editModalOpen: false
+    })
+  }
 
 	deleteReview = async (review) => {
 		console.log(review);
@@ -55,11 +64,74 @@ export default class ReviewContainer extends Component {
 		this.setState({reviews: this.state.reviews.filter((reviews) => review)});
 	}
 
+	 editReview = (idOfReviewToEdit) => {
+    const reviewToEdit = this.state.reviews.find(reviews => reviews.content === idOfReviewToEdit)
+    this.setState({
+      editModalOpen: true, 
+      reviewToEdit: {
+        ...reviewToEdit
+      }
+    })
+  }
+
+  	 updateReview = async (e) => {
+    e.preventDefault()
+
+    try {
+      const url = process.env.REACT_APP_API_URL + '/api/v1/reviews/' + this.state.reviewToEdit.id
+      const updateResponse = await fetch(url, {
+        method: 'PUT',
+        credentials: 'include',
+        body: JSON.stringify(this.state.reviewToEdit),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const updateResponseParsed = await updateResponse.json()
+
+      console.log("response from DB after trying to do update");
+      console.log(updateResponseParsed);
+
+      // updating data on screen (let's be v functional about it)
+      // iterate over dogs in state, replace the pertinent dog
+      // with the data from the updateResponse
+      const newReviewArrayWithUpdate = this.state.reviews.map((reviews) => {
+        if(reviews.id === updateResponseParsed.data.id) {
+          // replace it if it's that one dog
+          reviews = updateResponseParsed.data
+        }        
+        return reviews
+      })
+
+      this.setState({
+        reviews: newReviewArrayWithUpdate
+      })
+      this.closeModal()
+      
+    } catch(err) {
+      console.error(err)
+    }
+
+  }
+
+  closeModal = () => {
+    this.setState({
+      editModalOpen: false
+    })
+  }
+
 	render(){
     return (
       <React.Fragment>
         <CreateReviewForm addReview={this.props.addReview} album={this.props.album}/>
-        <ReviewList reviewsFound={this.state.reviews} album={this.props.album} deleteReview={this.deleteReview}/>
+        <ReviewList reviewsFound={this.state.reviews} album={this.props.album} deleteReview={this.deleteReview} editReview={this.editReview}/>
+        <ReviewEditModal
+         open={this.state.editModalOpen}
+            updateReview={this.updateReview}
+            reviewToEdit={this.state.reviewToEdit}
+            closeModal={this.closeModal}
+            handleEditChange={this.handleEditChange}
+          />
       </React.Fragment>
     )
 	}
