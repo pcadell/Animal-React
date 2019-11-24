@@ -17,5 +17,3 @@ export default function ReviewList(props){
 		</React.Fragment>
 		)
 }
-
-// filter(review => review.album.id === props.id).
