@@ -41,8 +41,14 @@ export default class AlbumContainer extends Component {
 
 	addReview = async (e, reviewFromForm) => {
 		e.preventDefault();
+		console.log("e :", e)
+		console.log("reviewFromForm: ", reviewFromForm)
+
+		const body = {
+			content: reviewFromForm
+		}
 		try {
-			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/', {
+			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + reviewFromForm.album, {
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify(reviewFromForm),
@@ -57,9 +63,6 @@ export default class AlbumContainer extends Component {
 			console.error(err)
 		}
 	}
-
-
-
 	addAlbum = async (e, albumFromTheForm) => {
 		e.preventDefault();
 		try {

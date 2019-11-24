@@ -43,7 +43,11 @@ class AlbumList extends Component {
 							</Card.Content>
 						</Card>
 						{
-							this.state.reviewsShowing ? <ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist}/> : null
+							this.state.reviewsShowing 
+							? 
+							<ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist} album={album.id}/> 
+							:
+							 null
 						}
 					</React.Fragment>
 				)

@@ -35,7 +35,7 @@ export default class ReviewContainer extends Component {
 		return(
 			<React.Fragment>
 				<ReviewList reviewsFound={this.state.reviews}/>
-				<CreateReviewForm addReview={this.props.addReview}/>
+				<CreateReviewForm addReview={this.props.addReview} album={this.props.album}/>
 			</React.Fragment>
 			)
 	}
