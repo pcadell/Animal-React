@@ -13,6 +13,7 @@ export default class AlbumContainer extends Component {
 		albums: [],
 		reviews:[],
 		editModalOpen: false,
+		reviewFocus: false,
 		albumToEdit:{
 			title:'',
 			artist:'', 
@@ -23,6 +24,20 @@ export default class AlbumContainer extends Component {
 	}
 	componentDidMount(){
 		this.getAlbums();
+	}
+	// this fits into the ternary to either have create album open
+	// or reviews and create review options, declutters the ui
+	// tRF() is triggered in AlbumList
+	toggleReviewFocus(){
+		if (this.state.reviewFocus) {
+			this.setState({
+				reviewFocus: false
+			})
+		} else {
+			this.setState({
+				reviewFocus: true
+			})
+		}
 	}
 
 	addReview = async (e, reviewFromForm) => {
@@ -146,7 +161,13 @@ export default class AlbumContainer extends Component {
 			>
 				<Grid.Row>
 		          	<Grid.Column>
+		          	{ 
+		          		!this.state.reviewFocus
+		          		?
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
+	           			:
+	           			null
+		          	}
 	         		</Grid.Column>
 	         		<EditAlbumModal
 	         			open={this.state.editModalOpen}
@@ -161,6 +182,8 @@ export default class AlbumContainer extends Component {
 							editAlbum={this.editAlbum}
 							chosenGenre={this.props.chosenGenre}
 							addReview={this.addReview}
+							reviewFocus={this.state.reviewFocus}
+							toggleReviewFocus={this.toggleReviewFocus}
 						/>
 					</Grid.Column>
 				</Grid.Row>
