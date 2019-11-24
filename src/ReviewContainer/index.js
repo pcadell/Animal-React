@@ -36,7 +36,6 @@ export default class ReviewContainer extends Component {
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
 			const parsedReviews = await reviews.json()
-			console.log('parsedReviews from ReviewContainer: ',parsedReviews)
 			this.setState({
 				reviews: parsedReviews.data
 			})
@@ -48,8 +47,8 @@ export default class ReviewContainer extends Component {
 	render(){
 		return(
 			<React.Fragment>
-				<ReviewList reviewsFound={this.state.reviews}/>
 				<CreateReviewForm addReview={this.props.addReview} album={this.props.album}/>
+				<ReviewList reviewsFound={this.state.reviews} album={this.props.album}/>
 			</React.Fragment>
 			)
 	}
