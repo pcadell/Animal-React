@@ -36,7 +36,6 @@ export default class ReviewContainer extends Component {
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
 			const parsedReviews = await reviews.json()
-			console.log('parsedReviews from ReviewContainer: ',parsedReviews)
 			this.setState({
 				reviews: parsedReviews.data
 			})
@@ -45,13 +44,24 @@ export default class ReviewContainer extends Component {
 		}
 	}
 
+	deleteReview = async (id) => {
+		console.log(id);
+		const deleteReviewResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + id, {
+			method: 'DELETE',
+			credentials: 'include'
+		}); 
+		const deleteReviewParsed = await deleteReviewResponse.json();
+		console.log(deleteReviewParsed);
+		this.setState({reviews: this.state.reviews.filter((reviews) => reviews.id !== id)});
+	}
+
 	render(){
-		return(
-			<React.Fragment>
-				<ReviewList reviewsFound={this.state.reviews}/>
-				<CreateReviewForm addReview={this.props.addReview} album={this.props.album}/>
-			</React.Fragment>
-			)
+    return (
+      <React.Fragment>
+        <CreateReviewForm addReview={this.props.addReview} album={this.props.album}/>
+        <ReviewList reviewsFound={this.state.reviews} album={this.props.album} deleteReview={this.deleteReview}/>
+      </React.Fragment>
+    )
 	}
 }
 

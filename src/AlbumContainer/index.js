@@ -4,7 +4,6 @@ import '../App.css';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal'
-import CreateReview from '../CreateReviewForm'
 
 export default class AlbumContainer extends Component {
 	constructor(){
@@ -14,6 +13,7 @@ export default class AlbumContainer extends Component {
 		albums: [],
 		reviews:[],
 		editModalOpen: false,
+		reviewFocus: false,
 		albumToEdit:{
 			title:'',
 			artist:'', 
@@ -25,17 +25,18 @@ export default class AlbumContainer extends Component {
 	componentDidMount(){
 		this.getAlbums();
 	}
-	
-	getAlbums = async () => {
-		try {
-			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
-			const parsedAlbums = await albums.json();
-			console.log(parsedAlbums)
+	// this fits into the ternary to either have create album open
+	// or reviews and create review options, declutters the ui
+	// tRF() is triggered in AlbumList
+	toggleReviewFocus = () => {
+		if (this.state.reviewFocus) {
 			this.setState({
-				albums: parsedAlbums.data
+				reviewFocus: false
 			})
-		} catch(err) {
-			console.error(err)
+		} else {
+			this.setState({
+				reviewFocus: true
+			})
 		}
 	}
 
@@ -56,6 +57,19 @@ export default class AlbumContainer extends Component {
 			const parsedResponse = await createdReviewResponses.json();
 			console.log(parsedResponse, ' this is review submission response')
 			this.setState({reviews: [...this.state.reviews, parsedResponse.data]})
+		} catch(err) {
+			console.error(err)
+		}
+	}
+
+	getAlbums = async () => {
+		try {
+			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
+			const parsedAlbums = await albums.json();
+//			console.log(parsedAlbums)
+			this.setState({
+				albums: parsedAlbums.data
+			})
 		} catch(err) {
 			console.error(err)
 		}
@@ -147,7 +161,13 @@ export default class AlbumContainer extends Component {
 			>
 				<Grid.Row>
 		          	<Grid.Column>
+		          	{ 
+		          		!this.state.reviewFocus
+		          		?
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
+	           			:
+	           			null
+		          	}
 	         		</Grid.Column>
 	         		<EditAlbumModal
 	         			open={this.state.editModalOpen}
@@ -162,6 +182,8 @@ export default class AlbumContainer extends Component {
 							editAlbum={this.editAlbum}
 							chosenGenre={this.props.chosenGenre}
 							addReview={this.addReview}
+							reviewFocus={this.state.reviewFocus}
+							toggleReviewFocus={this.toggleReviewFocus}
 						/>
 					</Grid.Column>
 				</Grid.Row>

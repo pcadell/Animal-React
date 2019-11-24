@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Image } from 'semantic-ui-react';
 import ReviewContainer from '../ReviewContainer'
 
 class AlbumList extends Component {
 	constructor(props){
 		super(props)
 		this.state = ({
-			reviewsShowing: false
+			reviewsShowing: this.props.reviewFocus
 		})
 	}
+	componentDidMount(){
 
-	showReviews = () => {
+	}
+
+	showReviews = (props) => {
 		if (this.state.reviewsShowing === false){
 				this.setState({
 					reviewsShowing: true
@@ -20,6 +23,7 @@ class AlbumList extends Component {
 					reviewsShowing: false
 				})
 			}
+		this.props.toggleReviewFocus()
 		console.log('\n reviewsShowing in albumlist is: ',this.state.reviewsShowing)
 	}
 
@@ -30,22 +34,22 @@ class AlbumList extends Component {
 				return (
 					<React.Fragment  key={album.id}>
 						<Card>
-						<Card.Content>
-							<Card.Header>{album.title}</Card.Header>
-							<Card.Description>{album.artist}</Card.Description>
-							<Card.Description>{album.album_cover}</Card.Description>
-							<Card.Description>{album.genre}</Card.Description>
-						</Card.Content>
-							<Card.Content extra>
-								<Button onClick={() => this.props.editAlbum(album.id)}>Edit Album</Button>
-								<Button onClick={() => this.showReviews()}>Reviews</Button>
-								<Button onClick={() => this.props.addReview(album.id)}>Create Review</Button>
+						    <Image src={album.album_cover} wrapped ui={false} />
+							<Card.Content>
+								<Card.Header>{album.title}</Card.Header>
+								<Card.Description>{album.artist}</Card.Description>
+								<Card.Description>{album.genre}</Card.Description>
 							</Card.Content>
+								<Card.Content extra>
+									<Button onClick={() => this.props.editAlbum(album.id)}>Edit Album</Button>
+									<Button onClick={() => this.showReviews()}>Reviews</Button>
+									<Button onClick={() => this.props.addReview(album.id)}>Create Review</Button>
+								</Card.Content>
 						</Card>
 						{
 							this.state.reviewsShowing 
 							? 
-							<ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist} album={album.id}/> 
+							<ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist} album={album.id}/>
 							:
 							 null
 						}

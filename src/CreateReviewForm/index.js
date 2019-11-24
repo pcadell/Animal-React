@@ -7,7 +7,7 @@ class CreateReview extends Component {
 
 		this.state = {
 			content: '',
-			album: this.props.album
+			album: this.props.album,
 		}
 	}
 	handleChange = (e) => {
