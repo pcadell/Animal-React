@@ -44,15 +44,15 @@ export default class ReviewContainer extends Component {
 		}
 	}
 
-	deleteReview = async (id) => {
-		console.log(id);
-		const deleteReviewResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + id, {
+	deleteReview = async (review) => {
+		console.log(review);
+		const deleteReviewResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + review, {
 			method: 'DELETE',
 			credentials: 'include'
 		}); 
 		const deleteReviewParsed = await deleteReviewResponse.json();
 		console.log(deleteReviewParsed);
-		this.setState({reviews: this.state.reviews.filter((reviews) => reviews.id !== id)});
+		this.setState({reviews: this.state.reviews.filter((reviews) => review)});
 	}
 
 	render(){

@@ -7,10 +7,9 @@ export default function ReviewList(props){
 	const reviews = props.reviewsFound.filter(review => review.album.id === props.album).map((review)=>{
 		return (
 			<React.Fragment key={review.created_at}>
-				<small>{review.created_at}</small>
 				<p>{review.content}</p>
-				<p>{review.content.id}</p>
-				<Button onClick={() => props.deleteReview(reviews.id)}>Delete Review</Button>
+				<small>{review.created_at}</small>
+				<p><Button onClick={() => props.deleteReview(review.content)}>Delete Review</Button></p>
 			</React.Fragment>
 			)
 	})
