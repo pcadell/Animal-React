@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Form, Button, Label, Segment } from 'semantic-ui-react';
 
 class CreateAlbum extends Component {
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {
 			title: '',
 			artist: '',

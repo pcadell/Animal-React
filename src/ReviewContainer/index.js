@@ -2,27 +2,41 @@ import React, { Component } from 'react'
 import '../App.css';
 import CreateReviewForm from '../CreateReviewForm'
 import ReviewList from '../ReviewList'
+import ReviewEditModal from '../ReviewEditModal'
 
 // review container loads on click from a button that is in the AlbumList
 export default class ReviewContainer extends Component {
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 
 		this.state = ({
-			reviews: []
+			reviews: [],
+			editModalOpen: false,
+			reviewToEdit: {
+				content: ''
+			}
 		})
 
 	}
 
 	componentDidMount(){
+		this.getReviews();
+	}
 
+	handleEditChange = (event) => {
+		this.setState({
+			reviewToEdit: {
+				...this.state.reviewToEdit, 
+				[event.target.name]: event.target.value
+			}
+		})
 	}
 
 	getReviews = async () => {
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
 			const parsedReviews = await reviews.json()
-			console.log(parsedReviews)
+			console.log('parsedReviews from ReviewContainer: ',parsedReviews)
 			this.setState({
 				reviews: parsedReviews.data
 			})
