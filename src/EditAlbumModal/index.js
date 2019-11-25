@@ -5,7 +5,7 @@ import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
 function EditAlbumModal(props) {
 // why isn't the closeIcon operative or showing?
 	return(
-		<Modal open={props.open} closeIcon onClose={props.closeModal}> 
+		<Modal open={props.open} onClose={props.closeModal}> 
 			<Header>Edit Album</Header>
 			<Modal.Content>
 				<Form onSubmit={props.updateAlbum}>
@@ -23,6 +23,7 @@ function EditAlbumModal(props) {
 					
 					<Modal.Actions>
 						<Button color='red' type="submit"> Update Album </Button>
+						<Button color='yellow' onClick={props.closeModal}>Close Modal</Button>
 					</Modal.Actions>
 				</Form>
 			</Modal.Content>
