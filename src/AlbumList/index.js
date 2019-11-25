@@ -22,16 +22,22 @@ class AlbumList extends Component {
 	// 		if the button is clicked in another album to show those reviews for that albumId, 
 	// That will close the previous reviews.
 
-	showReviews = (props) => {
+	showReviews = (albumId) => {
 
-		if (props === this.state.reviewsShowing){
+		console.log("albumId ", albumId);
+		console.log("this.state.reviewsShowing ", this.state.reviewsShowing);
+
+		if (albumId === this.state.reviewsShowing){
+			this.props.increaseNumberOfReviewsOpen('add')
 			this.props.toggleReviewFocus()
 			this.setState({
 				reviewsShowing: -1
 			})
 		} else {
+			this.props.increaseNumberOfReviewsOpen(0)
+			this.props.toggleReviewFocus()
 			this.setState({
-				reviewsShowing: props
+				reviewsShowing: albumId
 			})
 		}
 

@@ -20,7 +20,8 @@ export default class AlbumContainer extends Component {
 			album_cover:'',
 			genre:'',
 			},
-		chosenGenre: this.props.chosenGenre
+		chosenGenre: this.props.chosenGenre, 
+		numberOfReviewsOpen: 0
 		}
 	}
 	componentDidMount(){
@@ -29,15 +30,15 @@ export default class AlbumContainer extends Component {
 
 // if we pass the album being toggled up here and compared that to another value, it could only run the toggle if the value === -1
 	toggleReviewFocus = () => {
-		if (this.state.reviewFocus) {
+		// if (this.state.reviewFocus) {
 			this.setState({
-				reviewFocus: false // -1
+				reviewFocus: !this.state.reviewFocus // -1
 			})
-		} else {
-			this.setState({
-				reviewFocus: true // album.id
-			})
-		}
+		// } else {
+		// 	this.setState({
+		// 		reviewFocus: true // album.id
+		// 	})
+		// }
 	}
 
 	addReview = async (e, reviewFromForm) => {
@@ -113,6 +114,17 @@ export default class AlbumContainer extends Component {
 		})
 	}
 
+	increaseNumberOfReviewsOpen = (operation) => {
+		if (operation === 'add') {
+			this.setState({
+				numberOfReviewsOpen: this.state.numberOfReviewsOpen + 1
+			})
+		} else {
+			this.setState({
+				numberOfReviewsOpen: this.state.numberOfReviewsOpen - 1
+			})
+		}
+	}
 
 	updateAlbum = async (e) => {
 		e.preventDefault()
@@ -164,7 +176,7 @@ export default class AlbumContainer extends Component {
 		          	</Grid.Column>
 		          	<Grid.Column>
 		          	{ 
-		          		!this.state.reviewFocus // if (this.state.reviewFocus === -1)
+		          		this.state.numberOfReviewsOpen === 0 // if (this.state.reviewFocus === -1)
 		          		?
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
 	           			:
@@ -186,6 +198,7 @@ export default class AlbumContainer extends Component {
 							addReview={this.addReview}
 							reviewFocus={this.state.reviewFocus}
 							toggleReviewFocus={this.toggleReviewFocus}
+							increaseNumberOfReviewsOpen={this.increaseNumberOfReviewsOpen}
 						/>
 					</Grid.Column>
 				</Grid.Row>
