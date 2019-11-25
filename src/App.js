@@ -95,7 +95,7 @@ class App extends Component {
           ?
             <GenreContainer chooseGenre={this.chooseGenre}/>
           :
-            <AlbumContainer chosenGenre={this.state.genreChosen}/>
+            <AlbumContainer chosenGenre={this.state.genreChosen} chooseGenre={this.chooseGenre}/>
           }
       </div>
     );}
