@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-//import '../App.css';
-=======
 import { Grid, Button } from 'semantic-ui-react';
 import '../App.css';
->>>>>>> 15551679c6b25e953e84a0d3361aed26ff509771
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal';
-import { Grid } from 'semantic-ui-react';
 
 export default class AlbumContainer extends Component {
 	constructor(props){
