@@ -67,7 +67,6 @@ export default class AlbumContainer extends Component {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
 			const parsedAlbums = await albums.json();
-//			console.log(parsedAlbums)
 			this.setState({
 				albums: parsedAlbums.data
 			})
@@ -153,7 +152,7 @@ export default class AlbumContainer extends Component {
 	render(props){
 		return(
 			<Grid
-				columns={2} 
+				columns={6} 
 				divided
 				textAlign='center'
 				style={{height: '100%'}}
