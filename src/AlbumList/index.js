@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Button, Image } from 'semantic-ui-react';
+import { Modal, Form, Button, Label, Header, Card, Image } from 'semantic-ui-react';
 import ReviewContainer from '../ReviewContainer'
+import CreateAlbum from '../CreateAlbumForm'
 
 class AlbumList extends Component {
 	constructor(props){
@@ -28,7 +29,7 @@ class AlbumList extends Component {
 	}
 
 
-	render(){
+	render(props){
 		const albums = 
 			this.props.albums.filter(album => album.genre === this.props.chosenGenre).map((album) => {
 				return (

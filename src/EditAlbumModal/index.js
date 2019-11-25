@@ -1,8 +1,8 @@
   
 import React from 'react'
 import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
-  
-function EditAlbumModal(props) {
+
+function EditAlbumModal(props) {  
 // why isn't the closeIcon operative or showing?
 	return(
 		<Modal open={props.open} onClose={props.closeModal}> 

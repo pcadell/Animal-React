@@ -68,7 +68,6 @@ export default class AlbumContainer extends Component {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
 			const parsedAlbums = await albums.json();
-//			console.log(parsedAlbums)
 			this.setState({
 				albums: parsedAlbums.data
 			})
