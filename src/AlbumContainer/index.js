@@ -152,7 +152,7 @@ export default class AlbumContainer extends Component {
 	render(props){
 		return(
 			<Grid
-				columns={6} 
+				columns={4} 
 				divided
 				textAlign='center'
 				style={{height: '100%'}}
