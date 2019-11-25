@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
-import '../App.css';
+//import '../App.css';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
-import EditAlbumModal from '../EditAlbumModal'
+import EditAlbumModal from '../EditAlbumModal';
+import { Grid } from 'semantic-ui-react';
 
 export default class AlbumContainer extends Component {
 	constructor(){
@@ -152,7 +152,7 @@ export default class AlbumContainer extends Component {
 	render(props){
 		return(
 			<Grid
-				columns={2} 
+				columns={3} 
 				divided
 				textAlign='center'
 				style={{height: '100%'}}
