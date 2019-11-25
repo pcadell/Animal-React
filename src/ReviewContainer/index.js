@@ -26,7 +26,7 @@ export default class ReviewContainer extends Component {
 	handleEditChange = (event) => {
 		this.setState({
 			reviewToEdit: {
-				...this.state.reviewToEdit, 
+				...this.state.reviewToEdit,       // state doesn't leave a spot for id, and yet we have it?
 				[event.target.name]: event.target.value
 			}
 		})
@@ -66,7 +66,8 @@ export default class ReviewContainer extends Component {
 	}
 
 	 editReview = (idOfReviewToEdit) => {
-    const reviewToEdit = this.state.reviews.find(reviews => reviews.content === idOfReviewToEdit)
+    const reviewToEdit = this.state.reviews.find(reviews => reviews.id === idOfReviewToEdit)
+    console.log('\nreview found to edit by id: ', reviewToEdit)
     this.setState({
       editModalOpen: true, 
       reviewToEdit: {
@@ -75,9 +76,9 @@ export default class ReviewContainer extends Component {
     })
   }
 
-  	 updateReview = async (e) => {
+  	updateReview = async (e) => {
     e.preventDefault()
-
+    console.log('\n this is e at updateReview in ReviewContainer: ',e)
     try {
       const url = process.env.REACT_APP_API_URL + '/api/v1/reviews/' + this.state.reviewToEdit.id
       const updateResponse = await fetch(url, {
@@ -94,14 +95,14 @@ export default class ReviewContainer extends Component {
       console.log(updateResponseParsed);
 
       // updating data on screen (let's be v functional about it)
-      // iterate over dogs in state, replace the pertinent dog
+      // iterate over reviews in state, replace the pertinent review
       // with the data from the updateResponse
-      const newReviewArrayWithUpdate = this.state.reviews.map((reviews) => {
-        if(reviews.id === updateResponseParsed.data.id) {
-          // replace it if it's that one dog
-          reviews = updateResponseParsed.data
+      const newReviewArrayWithUpdate = this.state.reviews.map((review) => {
+        if(review.id === updateResponseParsed.data.id) {
+          // replace it if it's that one review
+          review = updateResponseParsed.data
         }        
-        return reviews
+        return review
       })
 
       this.setState({

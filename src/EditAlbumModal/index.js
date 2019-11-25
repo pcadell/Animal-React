@@ -3,9 +3,9 @@ import React from 'react'
 import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
   
 function EditAlbumModal(props) {
-
+// why isn't the closeIcon operative or showing?
 	return(
-		<Modal open={props.open} closeIcon onClose={props.closeModal}>
+		<Modal open={props.open} closeIcon onClose={props.closeModal}> 
 			<Header>Edit Album</Header>
 			<Modal.Content>
 				<Form onSubmit={props.updateAlbum}>
