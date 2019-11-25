@@ -2,30 +2,45 @@ import React, { Component } from 'react';
 import { Modal, Form, Button, Label, Header, Card, Image } from 'semantic-ui-react';
 import ReviewContainer from '../ReviewContainer'
 import CreateAlbum from '../CreateAlbumForm'
+import AlbumContainer from '../AlbumContainer'
 
 class AlbumList extends Component {
 	constructor(props){
 		super(props)
 		this.state = ({
-			reviewsShowing: this.props.reviewFocus
+			reviewsShowing: -1
 		})
 	}
 	componentDidMount(){
 
 	}
+	// When reviews button is clicked, 
+	// if the albumId already === this.state.reviewsShowing, 
+	// this will run the focus of toggling between the create albums 
+	// and showing the reviews and reviewsShowing is set to -1. 
+	// else It passes the album id to the reviewslist to see reviews for that album. 
+	// 		if the button is clicked in another album to show those reviews for that albumId, 
+	// That will close the previous reviews.
 
 	showReviews = (props) => {
-		if (this.state.reviewsShowing === false){
-				this.setState({
-					reviewsShowing: true
-				})
-			} else {
-				this.setState({
-					reviewsShowing: false
-				})
-			}
-		this.props.toggleReviewFocus()
-		console.log('\n reviewsShowing in albumlist is: ',this.state.reviewsShowing)
+		if (props === this.state.reviewsShowing){
+			this.props.toggleReviewFocus()
+			this.setState({
+				reviewsShowing: -1
+			})
+		} else {
+			this.setState({
+				reviewsShowing: props
+			})
+		}
+
+		////if (this.state.reviewsShowing === -1){
+		//	} else {
+		//		this.setState({
+		//			reviewsShowing: albumId
+		//		})
+		//	}
+		//console.log('\n reviewsShowing in albumlist is: ',this.state.reviewsShowing)
 	}
 
 
@@ -47,9 +62,9 @@ class AlbumList extends Component {
 								</Card.Content>
 						</Card>
 						{
-							this.state.reviewsShowing 
+							this.state.reviewsShowing === album.id
 							? 
-							<ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist} album={album.id}/>
+							<ReviewContainer addReview={this.props.addReview} albumlist={this.props.albumlist} album={album.id} reviewsShowing={this.state.reviewsShowing}/>
 							:
 							 null
 						}
