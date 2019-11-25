@@ -94,7 +94,7 @@ export default class AlbumContainer extends Component {
 			console.log(err);
 		}
 	}
-
+	// i don't understand why we have this, it gets passed to the modal but I don't see it called -Patrick
 	editAlbum = (idOfAlbumToEdit) => {
 		const albumToEdit = this.state.albums.find(album => album.id === idOfAlbumToEdit)	
 		this.setState({
