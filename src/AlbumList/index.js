@@ -42,7 +42,7 @@ class AlbumList extends Component {
 							</Card.Content>
 								<Card.Content extra>
 									<Button onClick={() => this.props.editAlbum(album.id)}>Edit Album</Button>
-									<Button onClick={() => this.showReviews()}>Reviews</Button>
+									<Button onClick={() => this.showReviews(album.id)}>Reviews</Button>
 								</Card.Content>
 						</Card>
 						{
