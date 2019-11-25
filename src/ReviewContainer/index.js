@@ -53,6 +53,7 @@ export default class ReviewContainer extends Component {
 		const deleteReviewParsed = await deleteReviewResponse.json();
 		console.log(deleteReviewParsed);
 		this.setState({reviews: this.state.reviews.filter((reviews) => review)});
+		this.getReviews()
 	}
 
 	render(){

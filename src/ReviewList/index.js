@@ -9,7 +9,7 @@ export default function ReviewList(props){
 			<React.Fragment key={review.created_at}>
 				<p>{review.content}</p>
 				<small>{review.created_at}</small>
-				<p><Button onClick={() => props.deleteReview(review.content)}>Delete Review</Button></p>
+				<p><Button onClick={() => props.deleteReview(review.id)}>Delete Review</Button></p>
 			</React.Fragment>
 			)
 	})

@@ -8,7 +8,7 @@ import EditAlbumModal from '../EditAlbumModal'
 export default class AlbumContainer extends Component {
 	constructor(){
 		super()
-
+// make it so the create album form doesn't load if smoeone's not logged in
 		this.state = {
 		albums: [],
 		reviews:[],
