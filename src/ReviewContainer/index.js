@@ -32,11 +32,14 @@ export default class ReviewContainer extends Component {
 		})
 	}
 
-	getReviews = async () => { //pass in props.album
+	getReviews = async (props) => {
+
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
 			const parsedReviews = await reviews.json()
-			this.setState({
+			console.log('\n this is parsedReviews.data in getReviews', parsedReviews.data)
+			//const filteredReviews = parsedReviews.data.filter(review => review.album.id === this.props.reviewsShowing)
+			this.setState({ 
 				reviews: parsedReviews.data
 			})
       this.closeModal()

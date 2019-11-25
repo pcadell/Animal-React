@@ -1,5 +1,5 @@
 import React, { Component } from 'react' 
-import { Form, Button, Label, Segment} from 'semantic-ui-react'
+import { Form, Button, Label, Segment, Modal} from 'semantic-ui-react'
 
 class CreateReview extends Component {
 	constructor(props){

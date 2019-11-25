@@ -5,7 +5,6 @@ import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal';
 
-
 export default class AlbumContainer extends Component {
 	constructor(props){
 		super(props)
@@ -68,7 +67,6 @@ export default class AlbumContainer extends Component {
 		try {
 			const albums = await fetch(process.env.REACT_APP_API_URL + '/api/v1/albums/');
 			const parsedAlbums = await albums.json();
-//			console.log(parsedAlbums)
 			this.setState({
 				albums: parsedAlbums.data
 			})
@@ -154,7 +152,7 @@ export default class AlbumContainer extends Component {
 	render(props){
 		return(
 			<Grid
-				columns={3} 
+				columns={4} 
 				divided
 				textAlign='center'
 				style={{height: '100%'}}
