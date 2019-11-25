@@ -8,9 +8,9 @@ export default function ReviewEditModal(props) {
 			<Modal.Content>
 				<Form onSubmit={props.updateReview}>
 				<Label> Content: </Label>
-				<Form.Input type="text" name="content" value={props.reviewToEdit.content} onChange={props.handleEditChange} />
+				<Form.Input type="text" name="content" value={props.reviewToEdit.id} onChange={props.handleEditChange} />
 				<Modal.Actions>
-				<Button color='red' type="submit"> Update Review </Button>
+				<Button color='green' type="submit"> Update Review </Button>
 				</Modal.Actions>
 			</Form>
 		</Modal.Content>
