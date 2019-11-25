@@ -3,7 +3,8 @@ import { Grid, Button } from 'semantic-ui-react';
 import '../App.css';
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
-import EditAlbumModal from '../EditAlbumModal'
+import EditAlbumModal from '../EditAlbumModal';
+
 
 export default class AlbumContainer extends Component {
 	constructor(props){
