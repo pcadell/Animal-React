@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 //import '../App.css';
+=======
+import { Grid, Button } from 'semantic-ui-react';
+import '../App.css';
+>>>>>>> 15551679c6b25e953e84a0d3361aed26ff509771
 import AlbumList from '../AlbumList';
 import CreateAlbum from '../CreateAlbumForm';
 import EditAlbumModal from '../EditAlbumModal';
 import { Grid } from 'semantic-ui-react';
 
 export default class AlbumContainer extends Component {
-	constructor(){
-		super()
+	constructor(props){
+		super(props)
 // make it so the create album form doesn't load if smoeone's not logged in
 		this.state = {
 		albums: [],
@@ -19,7 +24,8 @@ export default class AlbumContainer extends Component {
 			artist:'', 
 			album_cover:'',
 			genre:'',
-			}
+			},
+		chosenGenre: this.props.chosenGenre
 		}
 	}
 	componentDidMount(){
@@ -94,7 +100,7 @@ export default class AlbumContainer extends Component {
 			console.log(err);
 		}
 	}
-	// i don't understand why we have this, it gets passed to the modal but I don't see it called -Patrick
+
 	editAlbum = (idOfAlbumToEdit) => {
 		const albumToEdit = this.state.albums.find(album => album.id === idOfAlbumToEdit)	
 		this.setState({
@@ -160,6 +166,9 @@ export default class AlbumContainer extends Component {
 				stackable
 			>
 				<Grid.Row>
+		          	<Grid.Column>
+		          	<Button color='blue' onClick={()=>this.props.chooseGenre('')}>Back To Genres</Button>
+		          	</Grid.Column>
 		          	<Grid.Column>
 		          	{ 
 		          		!this.state.reviewFocus
