@@ -14,7 +14,7 @@ export default class AlbumContainer extends Component {
 		albums: [],
 		reviews:[],
 		editModalOpen: false,
-		reviewFocus: false,
+		reviewFocus: false, // default to -1, otherwise set to album.id
 		albumToEdit:{
 			title:'',
 			artist:'', 
@@ -33,11 +33,11 @@ export default class AlbumContainer extends Component {
 	toggleReviewFocus = () => {
 		if (this.state.reviewFocus) {
 			this.setState({
-				reviewFocus: false
+				reviewFocus: false // -1
 			})
 		} else {
 			this.setState({
-				reviewFocus: true
+				reviewFocus: true // album.id
 			})
 		}
 	}
@@ -167,7 +167,7 @@ export default class AlbumContainer extends Component {
 		          	</Grid.Column>
 		          	<Grid.Column>
 		          	{ 
-		          		!this.state.reviewFocus
+		          		!this.state.reviewFocus // if (this.state.reviewFocus === -1)
 		          		?
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
 	           			:

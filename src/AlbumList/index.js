@@ -14,19 +14,19 @@ class AlbumList extends Component {
 	}
 
 	showReviews = (props) => {
-		if (this.state.reviewsShowing === false){
+		if (this.state.reviewsShowing === false){ // === -1
 				this.setState({
-					reviewsShowing: true
+					reviewsShowing: true //  set boolean to album.id
 				})
 			} else {
 				this.setState({
-					reviewsShowing: false
+					reviewsShowing: false // set boolean to -1
 				})
 			}
 		this.props.toggleReviewFocus()
 		console.log('\n reviewsShowing in albumlist is: ',this.state.reviewsShowing)
 	}
-
+ // pass ln 45 this.showReviews(album.id)
 
 	render(){
 		const albums = 
@@ -42,7 +42,7 @@ class AlbumList extends Component {
 							</Card.Content>
 								<Card.Content extra>
 									<Button onClick={() => this.props.editAlbum(album.id)}>Edit Album</Button>
-									<Button onClick={() => this.showReviews()}>Reviews</Button>
+									<Button onClick={() => this.showReviews()}>Reviews</Button> 
 								</Card.Content>
 						</Card>
 						{

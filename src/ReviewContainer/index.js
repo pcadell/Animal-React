@@ -32,7 +32,7 @@ export default class ReviewContainer extends Component {
 		})
 	}
 
-	getReviews = async () => {
+	getReviews = async () => { //pass in props.album
 		try {
 			const reviews = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/')
 			const parsedReviews = await reviews.json()
