@@ -8,7 +8,7 @@ class AlbumList extends Component {
 	constructor(props){
 		super(props)
 		this.state = ({
-			reviewsShowing: -1
+			reviewsShowing: -1,
 		})
 	}
 	componentDidMount(){
