@@ -30,22 +30,13 @@ export default class AlbumContainer extends Component {
 
 // if we pass the album being toggled up here and compared that to another value, it could only run the toggle if the value === -1
 	toggleReviewFocus = () => {
-		// if (this.state.reviewFocus) {
 			this.setState({
 				reviewFocus: !this.state.reviewFocus // -1
 			})
-		// } else {
-		// 	this.setState({
-		// 		reviewFocus: true // album.id
-		// 	})
-		// }
 	}
 
 	addReview = async (e, reviewFromForm) => {
 		e.preventDefault();
-		console.log("e :", e)
-		console.log("reviewFromForm: ", reviewFromForm)
-
 		try {
 			const createdReviewResponses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/reviews/' + reviewFromForm.album, {
 				method: 'POST',
@@ -176,7 +167,7 @@ export default class AlbumContainer extends Component {
 		          	</Grid.Column>
 		          	<Grid.Column>
 		          	{ 
-		          		this.state.numberOfReviewsOpen === 0 // if (this.state.reviewFocus === -1)
+		          		this.state.numberOfReviewsOpen === 0 
 		          		?
 	           			<CreateAlbum addAlbum={this.addAlbum}/>
 	           			:
